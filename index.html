@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AgeCal Pro — Exact Age Calculator & Birthday Countdown</title>
+<meta name="description" content="AgeCal Pro calculates your exact age in years, months, days, hours and seconds, counts down to your next birthday, and reveals fun life stats like total heartbeats and Earth orbits. Free, instant, no signup.">
+<meta name="keywords" content="age calculator, exact age calculator, birthday countdown, how old am I, date of birth calculator, AgeCal Pro">
+<meta name="author" content="AgeCal Pro">
+<link rel="canonical" href="https://agecalpro.com/">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#10131c">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="AgeCal Pro — Exact Age Calculator & Birthday Countdown">
+<meta property="og:description" content="Calculate your exact age down to the second, count down to your next birthday, and discover fun life stats — free and instant.">
+<meta property="og:url" content="https://agecalpro.com/">
+<meta property="og:site_name" content="AgeCal Pro">
+<meta property="og:image" content="https://agecalpro.com/og-cover.png">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AgeCal Pro — Exact Age Calculator & Birthday Countdown">
+<meta name="twitter:description" content="Calculate your exact age down to the second and count down to your next birthday.">
+<meta name="twitter:image" content="https://agecalpro.com/og-cover.png">
+
+<link rel="icon" type="image/png" href="favicon.png.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+
+<!-- Structured data: SoftwareApplication -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "AgeCal Pro",
+  "url": "https://agecalpro.com/",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "description": "Calculate your exact age in years, months, days, hours, minutes and seconds, and see a live countdown to your next birthday."
+}
+</script>
+
+<!-- Structured data: FAQPage -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How does AgeCal Pro calculate my exact age?",
+      "acceptedAnswer": { "@type": "Answer", "text": "AgeCal Pro takes your date of birth and compares it to the current moment, breaking down the difference into whole years, months, days, hours, minutes and seconds." }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I find out what day of the week I was born on?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. After you calculate your age, AgeCal Pro shows the exact day of the week your birth date fell on." }
+    },
+    {
+      "@type": "Question",
+      "name": "Does AgeCal Pro store my birth date?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. All calculations run in your browser. Your date of birth is never sent to a server or stored anywhere." }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<div class="grain"></div>
+
+<header class="site-header">
+  <nav class="navbar">
+    <a href="#top" class="logo">
+      <span class="logo-mark" aria-hidden="true">⧗</span>
+      <span class="logo-text">AgeCal <em>Pro</em></span>
+    </a>
+    <div class="nav-links">
+      <a href="#calculator">Calculator</a>
+      <a href="#dial">Your Dial</a>
+      <a href="#life-stats">Life in Numbers</a>
+      <a href="#faq">FAQ</a>
+    </div>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-copy">
+      <p class="eyebrow">An instrument, not a widget</p>
+      <h1>Every second of your<br><span>life, measured.</span></h1>
+      <p class="hero-sub">Enter your birth date once. AgeCal Pro turns it into a live chronograph — your exact age, your next birthday, and the numbers behind a life in motion.</p>
+      <a href="#calculator" class="hero-cta">Set the dial <span aria-hidden="true">↓</span></a>
+    </div>
+    <div class="hero-dial-preview" aria-hidden="true">
+      <div class="mini-dial">
+        <div class="mini-dial-face">
+          <span class="mini-dial-num">27</span>
+          <span class="mini-dial-label">years, so far</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CALCULATOR INPUT -->
+  <section class="calculator-section" id="calculator" aria-labelledby="calc-heading">
+    <div class="panel calc-panel">
+      <p class="eyebrow">Step one</p>
+      <h2 id="calc-heading">Set your starting point</h2>
+
+      <div class="form-row single">
+        <div class="field">
+          <label for="birthDate">Date of birth</label>
+          <input type="date" id="birthDate" required>
+        </div>
+      </div>
+
+      <button type="button" class="wind-btn" id="calculateBtn">
+        <span>Wind the clock</span>
+        <span class="wind-icon" aria-hidden="true">⟳</span>
+      </button>
+      <p class="error-message" id="errorMessage" role="alert" aria-live="polite"></p>
+    </div>
+  </section>
+
+  <!-- DIAL / RESULTS -->
+  <section class="dial-section" id="dial" aria-labelledby="dial-heading">
+    <p class="eyebrow center">Your reading</p>
+    <h2 id="dial-heading" class="center">The chronograph</h2>
+    <p class="dial-intro center" id="birthdayMessage">Set your birth details above to bring the dial to life.</p>
+
+    <div class="chronograph" id="chronograph">
+      <div class="dial-ring" id="dialRing">
+        <div class="dial-face">
+          <span class="dial-eyebrow">next birthday in</span>
+          <div class="dial-countdown">
+            <div class="c-unit"><strong id="countDays">00</strong><small>days</small></div>
+            <div class="c-sep">:</div>
+            <div class="c-unit"><strong id="countHours">00</strong><small>hrs</small></div>
+            <div class="c-sep">:</div>
+            <div class="c-unit"><strong id="countMinutes">00</strong><small>min</small></div>
+            <div class="c-sep">:</div>
+            <div class="c-unit"><strong id="countSeconds">00</strong><small>sec</small></div>
+          </div>
+          <span class="dial-date" id="nextBirthdayDate">—</span>
+        </div>
+      </div>
+
+      <div class="subdials">
+        <div class="subdial">
+          <strong id="years">0</strong>
+          <small>years</small>
+        </div>
+        <div class="subdial">
+          <strong id="months">0</strong>
+          <small>months</small>
+        </div>
+        <div class="subdial">
+          <strong id="days">0</strong>
+          <small>days</small>
+        </div>
+        <div class="subdial">
+          <strong id="hours">0</strong>
+          <small>hours</small>
+        </div>
+        <div class="subdial">
+          <strong id="minutes">0</strong>
+          <small>minutes</small>
+        </div>
+        <div class="subdial">
+          <strong id="seconds">0</strong>
+          <small>seconds</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-strip">
+      <div class="info-card">
+        <span>Born on a</span>
+        <strong id="birthdayDay">—</strong>
+      </div>
+      <div class="info-card">
+        <span>Turning</span>
+        <strong id="turningAge">—</strong>
+      </div>
+      <div class="info-card">
+        <span>Star sign</span>
+        <strong id="zodiacSign">—</strong>
+      </div>
+    </div>
+
+    <div class="share-row">
+      <button type="button" class="share-btn" id="shareBtn">
+        <span class="share-btn-icon" aria-hidden="true">⇪</span>
+        <span id="shareBtnLabel">Share Age</span>
+      </button>
+      <button type="button" class="copy-link-btn" id="copyLinkBtn" aria-label="Copy link to clipboard">
+        <span aria-hidden="true">⧉</span>
+        <span>Copy Link</span>
+      </button>
+    </div>
+    <p class="share-status" id="shareStatus" role="status" aria-live="polite"></p>
+  </section>
+
+  <!-- LIFE IN NUMBERS -->
+  <section class="life-stats" id="life-stats" aria-labelledby="life-heading">
+    <p class="eyebrow center">Zoom out</p>
+    <h2 id="life-heading" class="center">Life, in numbers</h2>
+    <p class="dial-intro center">The same span of time, measured a few unexpected ways.</p>
+
+    <div class="stat-grid">
+      <div class="stat-card">
+        <span class="stat-icon" aria-hidden="true">♥</span>
+        <strong id="statHeartbeats">—</strong>
+        <span>estimated heartbeats</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-icon" aria-hidden="true">☾</span>
+        <strong id="statMoons">—</strong>
+        <span>full moons witnessed</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-icon" aria-hidden="true">☉</span>
+        <strong id="statOrbits">—</strong>
+        <span>trips around the sun</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-icon" aria-hidden="true">☁</span>
+        <strong id="statSleep">—</strong>
+        <span>days spent asleep</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-icon" aria-hidden="true">↻</span>
+        <strong id="statDaysLived">—</strong>
+        <span>days lived</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-icon" aria-hidden="true">◐</span>
+        <strong id="statWeekends">—</strong>
+        <span>weekends enjoyed</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about-section" id="about" aria-labelledby="about-heading">
+    <div class="panel about-panel">
+      <p class="eyebrow">Why AgeCal Pro</p>
+      <h2 id="about-heading">Built like an instrument, not a form</h2>
+      <p>Most age calculators hand back a single number and stop there. AgeCal Pro treats your birth date as the start of a running measurement — a live dial that keeps ticking, a countdown that keeps closing in, and a set of life stats most calculators never bother to show.</p>
+      <p>Everything runs in your browser. Nothing you enter is ever sent anywhere or stored — the dial resets the moment you close the tab.</p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq-section" id="faq" aria-labelledby="faq-heading">
+    <p class="eyebrow center">Questions</p>
+    <h2 id="faq-heading" class="center">Good to know</h2>
+
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary>How does AgeCal Pro calculate my exact age?</summary>
+        <p>It takes your date of birth and measures the exact distance to this moment, broken into whole years, months, days, hours, minutes and seconds — recalculated live, every second.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Can I find out what day of the week I was born on?</summary>
+        <p>Yes — once you wind the clock, your birth day of the week appears in the info strip beneath the dial.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Is my birth date stored anywhere?</summary>
+        <p>No. Every calculation happens locally in your browser. Nothing is sent to a server, logged, or saved.</p>
+      </details>
+      <details class="faq-item">
+        <summary>What's the "Life in Numbers" section?</summary>
+        <p>A set of rough, fun estimates — heartbeats, full moons witnessed, days spent asleep — built from your exact age. They're back-of-the-envelope averages, not medical or scientific measurements.</p>
+      </details>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <p>© <span id="currentYear"></span> AgeCal Pro. All calculations run in your browser.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
